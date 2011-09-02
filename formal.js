@@ -1,8 +1,9 @@
 handleRef = function(dic, ref)
 {
 	var options = dic[ref];
-	var choosen ;
-	return handleOpt(dic, choosen);
+	var random = (options.length - 1) * Math.random();
+	var choosen = Math.round(random);
+	return handleOpt(dic, options[choosen]);
 };
 
 handleOpt = function(dic, values)
@@ -29,7 +30,7 @@ exports.generate = function(dic)
 var formal = require("./formal.js");
 var P = {
 	0: [ [1,"!"] ],
-	1: [ [2], [",",2] ],
+	1: [ [2], [2,",",1] ],
 	2: [ [3,"ja"] ],
 	3: [ [4], [4,"u"], [3,"u"] ],
 	4: [ [5,"lu"], [8,"lu"] ],
