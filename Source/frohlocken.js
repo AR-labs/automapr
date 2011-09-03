@@ -1,4 +1,4 @@
-var formal = require("./formal.js");
+var formal = require("../Prototyping/formal.js");
 
 // recursive maximum
 var hossiana = {
