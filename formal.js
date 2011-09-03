@@ -1,19 +1,46 @@
-handleRef = function(dic, ref)
+/*
+//	formal.js
+//	Copyright 2010 Pablo Prietz
+//	License: See README
+*/
+
+/*
+//	Formal structure of generator source:
+//
+//	Ref: |Number|
+//	option: [ |String|, |Ref|, ... ]
+//
+//	{
+//		0	: [ |option|, ... ],
+//		|Ref|	: [ |option|, ... ], ...
+//	}
+*/
+
+// Public
+
+exports.generate = function(source)
 {
-	var options = dic[ref];
-	var random = (options.length - 1) * Math.random();
-	var choosen = Math.round(random);
-	return handleOpt(dic, options[choosen]);
+	return handleRef(source,0);
 };
 
-handleOpt = function(dic, values)
+// Private
+
+handleRef = function(src, ref)
+{
+	var options = src[ref];
+	var random = (options.length - 1) * Math.random();
+	var choosen = Math.round(random);
+	return handleOpt(src, options[choosen]);
+};
+
+handleOpt = function(src, values)
 {
 	var sum = "";
 	for (val in values)
 	{
 		var ref = parseInt(values[val], 10);
 		if(!isNaN(ref)){
-			sum += handleRef(dic, ref)
+			sum += handleRef(src, ref)
 		}
 		else{
 			sum +=  values[val];
@@ -21,23 +48,3 @@ handleOpt = function(dic, values)
 	}
 	return sum;
 };
-
-exports.generate = function(dic)
-{
-	return handleRef(dic,0);
-};
-
-var formal = require("./formal.js");
-var P = {
-	0: [ [1,"!"] ],
-	1: [ [2], [2,",",1] ],
-	2: [ [3,"ja"] ],
-	3: [ [4], [4,"u"], [3,"u"] ],
-	4: [ [5,"lu"], [8,"lu"] ],
-	5: [ [6,"le"], [6,"le"] ],
-	6: [ [7,"l"] ],
-	7: [ [8,"ha"], [7,"ha"] ],
-	8: [  ]
-};
-
-console.log(formal.generate(P));
