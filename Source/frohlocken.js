@@ -1,7 +1,7 @@
 var formal = require("../Prototyping/formal.js");
 
 // recursive maximum
-var hossiana = {
+var hosianna = {
 	0: [ [1,"!"] ],
 	1: [ [2], [2,", ",1] ],
 	2: [ [3,"ja"] ],
@@ -14,11 +14,11 @@ var hossiana = {
 
 // recursive minimum
 var halleluja = {
-	0: [ [1,"!"], [1,", ",0] ],
-	1: [ [2,"l",3, "lu", 4, "ja"], ["lu", 4, "ja"] ],
-	2: [ ["ha"], ["ha", 2] ],
-	3: [ ["le"], ["le", 3] ],
-	4: [ [""], ["u"], ["u", 4] ]
+	0: [ [1,"!"], [1,", ",0] ], // 1x, nx
+	1: [ [2,"l",3, "lu", 4, "ja"], ["lu", 4, "ja"] ], // 1x
+	2: [ ["ha"], ["ha", 2] ], // 1x, nx
+	3: [ ["le"], ["le", 3] ], // 1x, nx
+	4: [ [""], ["u"], ["u", 4] ] // 0x, 1x, nx
 };
 
 for (i = 0; i < 10; i++)
