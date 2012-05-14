@@ -8,6 +8,7 @@
 	Direction:
 	true  = right
 	false = left
+	null = stay
 	
 	flow elements:
 	StateID: [[read, write, direction, nextState], ...]
@@ -31,15 +32,12 @@ var flow = {
 };
 
 var multiply = {
+	binary: true;
 	strip: inputSymbols,
 	states: flow,
 	startState: "z0",
 	startStripIdx: 1
 };
-
-turing.run(multiply, function(currentFlow){
-	console.log(convertStripIntoString(currentFlow));
-});
 
 function convertStripIntoString(input)
 {
@@ -47,3 +45,15 @@ function convertStripIntoString(input)
 		return element ? "|" : "•"; 
 	}).join("");
 };
+
+// main()
+
+var count = 0;
+console.log("     Input: " + convertStripIntoString(multiply.strip));
+turing.run(multiply, function(currentFlow){
+	count++;
+	console.log(convertStripIntoString(currentFlow));
+});
+console.log("    Output: " + convertStripIntoString(multiply.strip));
+console.log("Calc Count: " + count);
+

@@ -14,9 +14,20 @@
 		[read, write, direction, nextState]
 */
 
+exports.binaryFormat = function(input)
+{
+	return input.map(function(element){
+		return element ? "|" : "•"; 
+	}).join("");
+};
+
+exports.valueFormat = function(input)
+{
+	return input.join("");
+};
+
 exports.run = function(input, step)
 {
-	step(input.strip);
 	handle(input, input.startState, input.startStripIdx, step)
 };
 
@@ -32,7 +43,7 @@ function handle(machine, state, position, step)
 	}
 	
 	var read = machine.strip[position]; // read strip
-	if (read === undefined || read === null) read = false; // reset
+	if (read === undefined || read === null) read = ""; // reset
 	
 	for (var i = 0; i < transitions.length; i++)
 	{
@@ -42,7 +53,10 @@ function handle(machine, state, position, step)
 
 			step(machine.strip);
 
-			transitions[i][2] ? position++ : position--; // right or left
+			if (transitions[i][2] !== undefined || transitions[i][2] !== null)
+			{
+				transitions[i][2] ? position++ : position--; // right or left
+			}
 			handle(machine, transitions[i][3], position, step);
 			break;
 		}

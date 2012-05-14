@@ -39,10 +39,12 @@ handleOpt = function(src, values)
 	for (val in values)
 	{
 		var ref = parseInt(values[val], 10);
-		if(!isNaN(ref)){
+		if(!isNaN(ref))
+		{
 			sum += handleRef(src, ref)
 		}
-		else{
+		else
+		{
 			sum +=  values[val];
 		}
 	}

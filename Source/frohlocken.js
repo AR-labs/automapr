@@ -21,7 +21,19 @@ var halleluja = {
 	4: [ [""], ["u"], ["u", 4] ] // 0x, 1x, nx
 };
 
-for (i = 0; i < 10; i++)
+var x = 1e6;
+var start = Date.now();
+for (var i = 0; i < x; i++)
 {
-	console.log(formal.generate(halleluja));
+	//console.log(formal.generate(halleluja));
+	formal.generate(halleluja);
 }
+console.log("Recursive Minimum:",Date.now() - start);
+
+start = Date.now();
+for (var i = 0; i < x; i++)
+{
+	//console.log(formal.generate(halleluja));
+	formal.generate(hosianna);
+}
+console.log("Recursive Maximum:",Date.now() - start);
